@@ -1,0 +1,200 @@
+/* Dark-only Registration form styles (no gradients) */
+
+:root {
+    --page-bg: #0b1220;
+    --card-bg: #0f1724;
+    --accent: #4f46e5;
+    --text: #e6eef8;
+    --muted: #9aa6b2;
+    --input-bg: #071221;
+}
+
+/* Container that holds the registration area */
+.reg-container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: var(--page-bg);
+    color: var(--text);
+}
+
+.reg-card {
+    width: 100%;
+    max-width: 860px;
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 6px 18px rgba(2, 6, 23, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.reg-header {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.reg-badge {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent);
+    color: white;
+    border-radius: 8px;
+    font-weight: 700;
+}
+
+.reg-title {
+    font-size: 1.25rem;
+    margin: 0;
+    color: var(--text)
+}
+
+.reg-sub {
+    margin: 0;
+    margin-top: 0.25rem;
+    color: var(--muted);
+    font-size: 0.9rem
+}
+
+.reg-grid {
+    display: grid;
+    gap: 1rem;
+    margin-top: 0.75rem
+}
+
+.reg-label {
+    display: block;
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 0.35rem;
+    font-weight: 600
+}
+
+.reg-input,
+.reg-select {
+    width: 100%;
+    padding: 0.6rem 0.9rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    background: var(--input-bg);
+    color: var(--text);
+    font-size: 0.95rem;
+}
+
+.reg-twocol {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem
+}
+
+@media(min-width:640px) {
+    .reg-twocol {
+        grid-template-columns: 1fr 1fr
+    }
+}
+
+.reg-legend {
+    font-weight: 700;
+    color: var(--text)
+}
+
+.reg-note {
+    color: var(--muted);
+    font-size: 0.8rem;
+    margin-top: 0.25rem
+}
+
+.reg-fieldset {
+    border: none;
+    padding: 0;
+    margin: 0
+}
+
+.reg-grid-3 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    margin-top: 0.75rem
+}
+
+@media(min-width:720px) {
+    .reg-grid-3 {
+        grid-template-columns: repeat(3, 1fr)
+    }
+}
+
+.reg-help {
+    color: var(--muted);
+    font-size: 0.75rem;
+    margin-top: 0.25rem
+}
+
+.reg-consent {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    margin-top: 0.5rem
+}
+
+.reg-consent input {
+    margin-top: 4px
+}
+
+.reg-consent-text {
+    font-size: 0.95rem;
+    color: var(--text)
+}
+
+.reg-error {
+    color: #f87171;
+    font-size: 0.8rem;
+    margin-top: 0.35rem
+}
+
+.reg-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 1rem
+}
+
+.reg-btn-primary {
+    background: var(--accent);
+    color: white;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600
+}
+
+.reg-btn-primary:hover {
+    opacity: 0.95
+}
+
+.reg-btn-reset {
+    background: transparent;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    padding: 0
+}
+
+/* keep old prefers-color-scheme overrides for safety but they should match our dark palette */
+@media (prefers-color-scheme: dark) {
+    .reg-container {
+        background: var(--page-bg)
+    }
+
+    .reg-card {
+        background: var(--card-bg)
+    }
+}

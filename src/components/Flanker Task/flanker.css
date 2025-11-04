@@ -1,0 +1,369 @@
+/* Dark-only Eriksen Flanker Task Styles */
+body {
+    background-color: #0b1220;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    color: #e6eef8;
+}
+
+.container {
+    background-color: #0f1724;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(2, 6, 23, 0.6);
+    padding: 40px;
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+}
+
+h1 {
+    color: #e6eef8;
+    margin-bottom: 20px;
+    font-weight: 500;
+    font-size: 2rem;
+}
+
+h2 {
+    color: #e6eef8;
+    margin-bottom: 30px;
+    font-weight: 500;
+}
+
+button {
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: opacity 0.15s ease, transform 0.12s ease;
+    margin: 16px 0;
+    font-weight: 500;
+}
+
+button:hover {
+    opacity: 0.95;
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* Instructions */
+.instructions {
+    background-color: #071221;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: left;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.instructions h3 {
+    color: #4f46e5;
+    margin-top: 0;
+    margin-bottom: 12px;
+}
+
+.instructions p {
+    margin: 10px 0;
+    line-height: 1.6;
+    color: #cbd5e1;
+}
+
+.response-guide {
+    background-color: #0b1220;
+    padding: 12px;
+    border-radius: 6px;
+    margin: 12px 0;
+    border-left: 3px solid #4f46e5;
+}
+
+.response-guide h4 {
+    color: #e6eef8;
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.response-guide ul {
+    list-style: none;
+    padding: 0;
+}
+
+.response-guide li {
+    margin: 8px 0;
+    padding: 4px;
+    color: #cbd5e1;
+}
+
+kbd {
+    background-color: #1e293b;
+    color: #e6eef8;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 1rem;
+    display: inline-block;
+    min-width: 36px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Trial Types */
+.trial-types {
+    margin: 16px 0;
+}
+
+.trial-types h4 {
+    color: #e6eef8;
+    margin-bottom: 12px;
+}
+
+.trial-example {
+    background-color: #071221;
+    padding: 12px;
+    margin: 12px 0;
+    border-radius: 6px;
+    border-left: 3px solid #9aa6b2;
+}
+
+.trial-example.congruent {
+    border-left-color: #10b981;
+}
+
+.trial-example.incongruent {
+    border-left-color: #f87171;
+}
+
+.trial-example.neutral {
+    border-left-color: #f59e0b;
+}
+
+.trial-example h5 {
+    margin-top: 0;
+    margin-bottom: 8px;
+    color: #e6eef8;
+}
+
+.trial-example .arrows {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 12px 0;
+    color: #cbd5e1;
+    letter-spacing: 8px;
+}
+
+.trial-example p {
+    margin: 6px 0;
+    color: #9aa6b2;
+}
+
+.trial-example .example-response {
+    font-style: italic;
+    color: #9aa6b2;
+    margin-top: 8px;
+}
+
+.important-note {
+    background-color: #1e1b4b;
+    border-left: 3px solid #f59e0b;
+    padding: 12px;
+    margin: 12px 0;
+    border-radius: 4px;
+    color: #fbbf24;
+}
+
+/* Fixation */
+.fixation-container {
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.fixation {
+    font-size: 48px;
+    font-weight: bold;
+    color: #4f46e5;
+}
+
+/* Stimulus Display */
+.stimulus-container {
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px 0;
+}
+
+.stimulus-display {
+    font-size: 80px;
+    font-weight: bold;
+    color: #e6eef8;
+    letter-spacing: 12px;
+    padding: 24px;
+    background-color: #071221;
+    border-radius: 8px;
+    min-width: 500px;
+    transition: background-color 0.2s ease;
+}
+
+.stimulus-display.show {
+    background-color: #0f2949;
+}
+
+/* Trial Info */
+.trial-info {
+    margin: 16px 0;
+    color: #9aa6b2;
+    font-size: 1rem;
+}
+
+.trial-info p {
+    margin: 6px 0;
+}
+
+.instruction-text {
+    color: #4f46e5;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 12px 0;
+}
+
+/* Progress Bar */
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: #0b1220;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 16px 0;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: #4f46e5;
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+/* Feedback */
+.feedback-message {
+    min-height: 28px;
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 12px 0;
+}
+
+.feedback-correct {
+    color: #10b981;
+}
+
+.feedback-incorrect {
+    color: #f87171;
+}
+
+/* Results */
+.results-table {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+}
+
+.results-table th,
+.results-table td {
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    text-align: center;
+    color: #cbd5e1;
+}
+
+.results-table th {
+    background-color: #4f46e5;
+    color: white;
+    font-weight: 500;
+}
+
+.results-table tr:nth-child(even) {
+    background-color: #071221;
+}
+
+.results-table tr:hover {
+    background-color: #0f2949;
+}
+
+.results-table tr.total-row {
+    font-weight: bold;
+    background-color: #1e3a5f;
+}
+
+.flanker-effect {
+    background-color: #071221;
+    padding: 16px;
+    border-radius: 8px;
+    margin: 20px 0;
+    text-align: left;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.flanker-effect h3 {
+    color: #4f46e5;
+    margin-top: 0;
+    margin-bottom: 12px;
+}
+
+.flanker-effect p {
+    margin: 8px 0;
+    font-size: 1rem;
+    color: #cbd5e1;
+}
+
+.flanker-effect strong {
+    color: #f87171;
+}
+
+#goToAnotherTest {
+    background-color: #10b981;
+    margin-top: 16px;
+}
+
+#goToAnotherTest:hover {
+    opacity: 0.95;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px 12px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .stimulus-display {
+        font-size: 60px;
+        min-width: 300px;
+        letter-spacing: 6px;
+        padding: 16px;
+    }
+
+    .trial-example .arrows {
+        font-size: 1.8rem;
+        letter-spacing: 4px;
+    }
+
+    kbd {
+        padding: 3px 6px;
+        font-size: 0.9rem;
+    }
+}

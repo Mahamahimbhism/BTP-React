@@ -1,0 +1,253 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+body {
+  background: #0b1220;
+  color: #e6eef8;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 1.2em rgba(79, 70, 229, 0.18));
+}
+
+.logo.react:hover {
+  filter: drop-shadow(0 0 1.2em rgba(97, 218, 255, 0.08));
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em
+}
+
+.read-the-docs {
+  color: #9aa6b2
+}
+
+/* Permission Screen Styles */
+.permission-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #0b1220;
+  padding: 1rem;
+}
+
+.permission-card {
+  background: #0f1724;
+  border-radius: 12px;
+  padding: 3rem;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid #1a2332;
+}
+
+.permission-card h1 {
+  color: #e6eef8;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+}
+
+.permission-content {
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+.permission-content p {
+  color: #b8c4d8;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.consent-details h3 {
+  color: #4f46e5;
+  font-size: 1.1rem;
+  margin: 1.5rem 0 0.8rem 0;
+}
+
+.consent-details ul {
+  list-style: none;
+  padding-left: 1.5rem;
+  color: #9aa6b2;
+}
+
+.consent-details li {
+  margin-bottom: 0.5rem;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.consent-details li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #4f46e5;
+  font-weight: bold;
+}
+
+.permission-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.btn-accept,
+.btn-skip {
+  flex: 1;
+  padding: 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-accept {
+  background: #4f46e5;
+  color: white;
+}
+
+.btn-accept:hover {
+  background: #4338ca;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
+}
+
+.btn-skip {
+  background: #1a2332;
+  color: #9aa6b2;
+  border: 1px solid #2a3a52;
+}
+
+.btn-skip:hover {
+  background: #242f3f;
+  color: #b8c4d8;
+}
+
+/* Completion Screen Styles */
+.completion-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #0b1220;
+  padding: 1rem;
+}
+
+.completion-card {
+  background: #0f1724;
+  border-radius: 12px;
+  padding: 3rem;
+  max-width: 700px;
+  width: 100%;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid #1a2332;
+}
+
+.completion-card h1 {
+  color: #4f46e5;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+}
+
+.completion-content {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.completion-content>p {
+  color: #b8c4d8;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.completion-summary {
+  background: #1a2332;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  text-align: left;
+  border-left: 4px solid #4f46e5;
+}
+
+.completion-summary h3 {
+  color: #4f46e5;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.completion-summary p {
+  color: #9aa6b2;
+  margin-bottom: 0.8rem;
+  font-size: 0.95rem;
+}
+
+.completion-summary strong {
+  color: #e6eef8;
+}
+
+.completion-note {
+  background: #1a2332;
+  border-radius: 8px;
+  padding: 1.5rem;
+  color: #9aa6b2;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  border-left: 4px solid #f39c12;
+}
+
+.btn-finish {
+  padding: 1rem 2rem;
+  background: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 2rem;
+}
+
+.btn-finish:hover {
+  background: #4338ca;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
+}
+
+.check-banner {
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+  padding: 1.25rem 0.75rem;
+  background: #0f1724;
+  color: #e6eef8;
+}

@@ -1,0 +1,276 @@
+/* N-Back Task Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    max-width: 700px;
+    width: 100%;
+    text-align: center;
+}
+
+h1 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-weight: 500;
+    font-size: 2rem;
+}
+
+h2 {
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-weight: 500;
+}
+
+button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 14px 35px;
+    font-size: 18px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+    font-weight: 500;
+}
+
+button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+button:disabled {
+    background-color: #95a5a6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Instructions */
+.instructions {
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.instructions h3 {
+    color: #3498db;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.instructions p {
+    margin: 10px 0;
+    line-height: 1.6;
+}
+
+.instructions ul {
+    margin: 10px 0;
+    padding-left: 25px;
+}
+
+.instructions li {
+    margin: 8px 0;
+    line-height: 1.6;
+}
+
+.task-explanation {
+    padding: 15px;
+    border-radius: 8px;
+    margin: 15px 0;
+    border-left: 4px solid #3498db;
+}
+
+.task-explanation h4 {
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.key-highlight {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 5px;
+    font-weight: 600;
+    color: #495057;
+    border: 1px solid #dee2e6;
+    font-size: 0.95em;
+}
+
+/* Stimulus Display */
+.stimulus-display {
+    width: 250px;
+    height: 250px;
+    margin: 40px auto;
+    background-color: #f8f9fa;
+    border: 3px solid #3498db;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 120px;
+    font-weight: bold;
+    color: #2c3e50;
+    transition: background-color 0.2s ease;
+}
+
+#letterDisplay, #practiceLetter {
+    user-select: none;
+}
+
+/* Trial Info */
+.trial-info {
+    margin: 20px 0;
+    color: #7f8c8d;
+    font-size: 1.1rem;
+}
+
+.trial-info p {
+    margin: 8px 0;
+}
+
+.instruction-text {
+    color: #3498db;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 15px 0;
+}
+
+/* Feedback */
+.feedback-message {
+    min-height: 30px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 15px 0;
+}
+
+.feedback-correct {
+    color: #27ae60;
+}
+
+.feedback-incorrect {
+    color: #e74c3c;
+}
+
+/* Rest Screen */
+.rest-message {
+    font-size: 1.3rem;
+    color: #2c3e50;
+    margin: 20px 0;
+}
+
+.rest-timer {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #3498db;
+    margin: 30px 0;
+}
+
+.rest-info {
+    font-size: 1.2rem;
+    color: #7f8c8d;
+    margin: 20px 0;
+}
+
+#nextBlockInfo {
+    font-weight: 600;
+    color: #3498db;
+}
+
+/* Results Table */
+.results-table {
+    width: 100%;
+    margin: 25px 0;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.results-table th,
+.results-table td {
+    padding: 12px 8px;
+    border: 1px solid #dee2e6;
+    text-align: center;
+}
+
+.results-table th {
+    background-color: #3498db;
+    color: white;
+    font-weight: 500;
+}
+
+/* Overall Stats */
+.overall-stats {
+    padding: 20px;
+    border-radius: 10px;
+    margin: 25px 0;
+    text-align: left;
+}
+
+.overall-stats h3 {
+    color: #3498db;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.overall-stats p {
+    margin: 10px 0;
+    font-size: 1.05rem;
+    color: #2c3e50;
+}
+
+.overall-stats strong {
+    color: #3498db;
+}
+
+/* Go to Another Test Button */
+#goToAnotherTest {
+    background-color: #27ae60;
+    margin-top: 20px;
+}
+
+#goToAnotherTest:hover {
+    background-color: #229954;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .container {
+        padding: 25px 15px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .stimulus-display {
+        width: 200px;
+        height: 200px;
+        font-size: 100px;
+    }
+
+    .results-table {
+        font-size: 0.8rem;
+    }
+
+    .results-table th,
+    .results-table td {
+        padding: 8px 4px;
+    }
+}
+
