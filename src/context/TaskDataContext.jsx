@@ -24,7 +24,7 @@ export function TaskDataProvider({ children }) {
     // Add or update task result with timestamps
     const addTaskResult = useCallback((taskId, taskName, taskData, metadata = {}) => {
         console.log('addTaskResult called with:', { taskId, taskName, taskData, metadata })
-        
+
         const taskResult = {
             taskId: taskId,
             taskName: taskName,

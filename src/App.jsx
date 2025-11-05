@@ -15,13 +15,13 @@ import { TaskDataProvider, useTaskData } from './context/TaskDataContext'
 const TASK_SEQUENCE = [
   { id: 'registration', name: 'Registration', component: RegistrationForm },
   { id: 'gng', name: 'Go/No-Go Test', component: GoNoGoTest },
-  // { id: 'mat', name: 'Mental Arithmetic Task', component: MAT },
-  // { id: 'pvt', name: 'Psychomotor Vigilance Task', component: Pvt },
-  // { id: 'stroop', name: 'Stroop Test', component: Stroop },
-  // { id: 'nback', name: 'N-Back Task', component: NBackTask },
-  // { id: 'trailMaking', name: 'Trail Making Test', component: TrailMakingTask },
+  { id: 'mat', name: 'Mental Arithmetic Task', component: MAT },
+  { id: 'pvt', name: 'Psychomotor Vigilance Task', component: Pvt },
+  { id: 'stroop', name: 'Stroop Test', component: Stroop },
+  { id: 'nback', name: 'N-Back Task', component: NBackTask },
+  { id: 'trailMaking', name: 'Trail Making Test', component: TrailMakingTask },
+  { id: 'posner', name: 'Posner Cueing Task', component: PosnerCueingTask },
   // { id: 'flanker', name: 'Flanker Task', component: FlankerTask },
-  // { id: 'posner', name: 'Posner Cueing Task', component: PosnerCueingTask },
 ]
 
 export default function App() {
@@ -47,8 +47,14 @@ function AppContent() {
   // Get context
   const { setParticipant, addTaskResult, getCompiledData } = useTaskData()
 
-  const currentTask = TASK_SEQUENCE[currentTaskIndex]
-  const CurrentComponent = currentTask.component
+  const currentTask = TASK_SEQUENCE[currentTaskIndex] || null
+  const CurrentComponent = currentTask?.component
+
+  // Keep a live ref of currentTaskIndex to avoid stale closures in callbacks
+  const currentTaskIndexRef = useRef(currentTaskIndex)
+  useEffect(() => {
+    currentTaskIndexRef.current = currentTaskIndex
+  }, [currentTaskIndex])
 
   // Start camera recording
   const startCameraRecording = async () => {
@@ -123,8 +129,19 @@ function AppContent() {
 
   function handleTaskComplete(data) {
     console.log(data);
+    // Determine the task at the moment of completion to avoid stale closure
+    const idx = currentTaskIndexRef.current
+    const taskAtCompletion = TASK_SEQUENCE[idx]
+
+    // If somehow out of range, finish gracefully
+    if (!taskAtCompletion) {
+      console.warn('Task index out of range on completion:', idx)
+      handleAllTasksComplete()
+      return
+    }
+
     // Save participant data if registration
-    if (currentTask.id === 'registration') {
+    if (taskAtCompletion.id === 'registration') {
       try {
         const users = JSON.parse(localStorage.getItem('users') || '[]')
         users.push({ participant: data, createdAt: Date.now() })
@@ -139,8 +156,8 @@ function AppContent() {
     // Add task result to context
     if (data) {
       addTaskResult(
-        currentTask.id,
-        currentTask.name,
+        taskAtCompletion.id,
+        taskAtCompletion.name,
         data,
         {
           startedAt: data.startedAt,
@@ -152,23 +169,31 @@ function AppContent() {
 
       setTestResults(prev => ({
         ...prev,
-        [currentTask.id]: {
-          taskName: currentTask.name,
+        [taskAtCompletion.id]: {
+          taskName: taskAtCompletion.name,
           data: data,
           completedAt: new Date().toISOString()
         }
       }))
     }
 
-    // Move to next task
-    if (currentTaskIndex < TASK_SEQUENCE.length - 1) {
-      setCurrentTaskIndex(currentTaskIndex + 1)
+    // Move to next task using current index snapshot
+    if (idx < TASK_SEQUENCE.length - 1) {
+      setCurrentTaskIndex(idx + 1)
     } else {
       // All tasks completed
       console.log('All tasks completed!')
       handleAllTasksComplete()
     }
   }
+
+  // Safety: if screen shows tasks but index is out of range, complete
+  useEffect(() => {
+    if (screen === 'tasks' && (currentTaskIndex < 0 || currentTaskIndex >= TASK_SEQUENCE.length)) {
+      console.warn('Current task index out of range during render:', currentTaskIndex)
+      handleAllTasksComplete()
+    }
+  }, [screen, currentTaskIndex])
 
   function handleAllTasksComplete() {
     // Stop recording and download
@@ -236,7 +261,7 @@ function AppContent() {
         </div>
       )}
 
-      {screen === 'tasks' && (
+      {screen === 'tasks' && CurrentComponent && (
         <>
           <CurrentComponent onComplete={handleTaskComplete} />
         </>

@@ -205,7 +205,18 @@ const NBackTask = ({ onComplete }) => {
     }, [isPractice, currentBlock, resetBlockData, generateSequence]);
 
     useEffect(() => {
-        if (isTestActive && currentTrial < stimulusSequence.length) {
+        if (!isTestActive) return;
+
+        const maxTrials = isPractice ? PRACTICE_TRIALS : TRIALS_PER_BLOCK;
+
+        // If we've reached or exceeded the planned number of trials for this block, end the block
+        if (currentTrial >= maxTrials) {
+            endBlock();
+            return;
+        }
+
+        // Otherwise, present the next stimulus if we have it in the sequence
+        if (currentTrial < stimulusSequence.length) {
             const isComplete = showNextStimulus(currentTrial, stimulusSequence, isPractice);
             if (isComplete) {
                 endBlock();

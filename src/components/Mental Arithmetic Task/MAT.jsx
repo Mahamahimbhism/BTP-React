@@ -8,8 +8,8 @@ const MAT = ({ onComplete }) => {
     const COMPUTATION_DURATION = 4000;
     const RESPONSE_DURATION = 1000;
     const FEEDBACK_DURATION = 1000;
-    const PRACTICE_TRIALS = 5;
-    const MAIN_TRIALS = 45;
+    const PRACTICE_TRIALS = 1;
+    const MAIN_TRIALS = 1;
 
     // State management
     const [screen, setScreen] = useState('welcome');
