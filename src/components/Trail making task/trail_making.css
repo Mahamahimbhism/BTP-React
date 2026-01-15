@@ -11,12 +11,17 @@ body {
 
 .container {
     border: none;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    padding: 40px;
-    max-width: 800px;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 40px 60px;
+    max-width: 100%;
     width: 100%;
+    min-height: 100vh;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 h1 {
@@ -95,7 +100,8 @@ button:active {
     color: white;
 }
 
-#time, #round2Time {
+#time,
+#round2Time {
     font-weight: bold;
     color: #2c3e50;
     font-size: 24px;
@@ -116,7 +122,8 @@ button:active {
     text-align: center;
 }
 
-.results-table th, .results-table td {
+.results-table th,
+.results-table td {
     padding: 12px;
     border: 1px solid #ddd;
 }
@@ -126,7 +133,8 @@ button:active {
     color: white;
 }
 
-#practiceFeedback, #round2PracticeFeedback {
+#practiceFeedback,
+#round2PracticeFeedback {
     font-size: 18px;
     font-weight: bold;
     margin: 10px 0;

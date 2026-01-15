@@ -23,9 +23,9 @@ const MAX_RESPONSE_TIME = 1500;
 const ITI_DURATION = 1000;
 
 // Trial distribution
-const TRIALS_PER_BLOCK = 40;
+const TRIALS_PER_BLOCK = 30;
 const PRACTICE_TRIALS = 12;
-const TOTAL_BLOCKS = 3;
+const TOTAL_BLOCKS = 1;
 const VALID_PROBABILITY = 0.8;
 const INVALID_PROBABILITY = 0.1;
 const NEUTRAL_PROBABILITY = 0.1;
@@ -62,6 +62,7 @@ const PosnerCueingTask = ({ onComplete }) => {
   const canRespondRef = useRef(false);
   const hasRespondedRef = useRef(false);
   const trialStartTimeRef = useRef(null);
+  const trialStartTimestamp = useRef(0); // Numeric timestamp for RT calculation
   const timeoutRef = useRef(null);
   const currentTrialRef = useRef(0);
   const trialDataRef = useRef({
@@ -171,6 +172,7 @@ const PosnerCueingTask = ({ onComplete }) => {
           }
 
           trialStartTimeRef.current = new Date().toISOString();
+          trialStartTimestamp.current = Date.now(); // Store numeric timestamp for RT
           canRespondRef.current = true;
 
           timeoutRef.current = setTimeout(() => {
@@ -339,7 +341,7 @@ const PosnerCueingTask = ({ onComplete }) => {
       hasRespondedRef.current = true;
       canRespondRef.current = false;
 
-      const reactionTime = Date.now() - trialStartTimeRef.current;
+      const reactionTime = Date.now() - trialStartTimestamp.current;
       const trial = stimulusSequenceRef.current[currentTrialRef.current];
 
       processResponse(key, reactionTime, trial);
@@ -518,7 +520,6 @@ const PosnerCueingTask = ({ onComplete }) => {
           </div>
 
           <div className="trial-info">
-            <p>Block: <span>{currentBlock}</span> / {TOTAL_BLOCKS}</p>
             <p>Trial: <span>{currentTrial}</span> / {TRIALS_PER_BLOCK}</p>
           </div>
 

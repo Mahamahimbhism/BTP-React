@@ -9,9 +9,8 @@ const STIMULUS_DURATION = 500;
 const ITI_DURATION = 2000;
 const REST_DURATION = 30;
 const BLOCKS = [
-    { name: '0-Back', n: 0, instruction: 'Press SPACEBAR when you see the letter X' },
-    { name: '2-Back', n: 2, instruction: 'Press SPACEBAR when the letter matches 2 positions back' },
-    { name: '3-Back', n: 3, instruction: 'Press SPACEBAR when the letter matches 3 positions back' }
+    { name: '1-Back', n: 1, instruction: 'Press SPACEBAR when the letter matches the previous letter (1 position back)' },
+    { name: '2-Back', n: 2, instruction: 'Press SPACEBAR when the letter matches 2 positions back' }
 ];
 
 const NBackTask = ({ onComplete }) => {
@@ -299,7 +298,7 @@ const NBackTask = ({ onComplete }) => {
         setCurrentTrial(0);
         setCurrentBlock(0);
         resetBlockData();
-        const sequence = generateSequence(PRACTICE_TRIALS, 0);
+        const sequence = generateSequence(PRACTICE_TRIALS, BLOCKS[0].n);
         setStimulusSequence(sequence);
         setScreen('practice');
 
@@ -333,11 +332,10 @@ const NBackTask = ({ onComplete }) => {
                         <p>Your task is to determine if the current letter <strong>matches</strong> the letter that appeared <strong>N positions back</strong> in the sequence.</p>
 
                         <div className="task-explanation">
-                            <h4>Three Task Blocks:</h4>
+                            <h4>Two Task Blocks:</h4>
                             <ul>
-                                <li><strong>0-Back:</strong> Press <span className="key-highlight">SPACEBAR</span> if the current letter is <strong>X</strong></li>
+                                <li><strong>1-Back:</strong> Press <span className="key-highlight">SPACEBAR</span> if the current letter matches the <strong>previous letter</strong> (1 position back)</li>
                                 <li><strong>2-Back:</strong> Press <span className="key-highlight">SPACEBAR</span> if the current letter matches the letter shown <strong>2 positions back</strong></li>
-                                <li><strong>3-Back:</strong> Press <span className="key-highlight">SPACEBAR</span> if the current letter matches the letter shown <strong>3 positions back</strong></li>
                             </ul>
                         </div>
 

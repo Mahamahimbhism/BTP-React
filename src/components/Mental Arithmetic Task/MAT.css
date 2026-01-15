@@ -14,9 +14,10 @@
 
 /* Welcome Screen */
 .ma-welcome-screen {
-  max-width: 800px;
+  max-width: 100%;
   width: 100%;
   text-align: center;
+  padding: 40px 60px;
 }
 
 .ma-title {
@@ -120,9 +121,10 @@
 
 /* Task Screen */
 .ma-task-screen {
-  max-width: 1000px;
+  max-width: 100%;
   width: 100%;
   text-align: center;
+  padding: 40px 60px;
 }
 
 .ma-progress-container {
@@ -215,10 +217,11 @@
 
 /* Results Screen */
 .ma-results-screen {
-  max-width: 1000px;
+  max-width: 100%;
   width: 100%;
   text-align: center;
   color: #ffffff;
+  padding: 40px 60px;
 }
 
 .ma-results-grid {

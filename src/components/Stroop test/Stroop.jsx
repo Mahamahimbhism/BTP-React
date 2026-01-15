@@ -22,21 +22,7 @@ const REST_DURATION = 10;
 
 const BLOCKS = [
   {
-    name: 'Block 1: Word Reading',
-    shortName: 'Word Reading',
-    type: 'word',
-    instruction: 'Read the word aloud and press the corresponding key',
-    description: 'Color words in black ink'
-  },
-  {
-    name: 'Block 2: Color Naming',
-    shortName: 'Color Naming',
-    type: 'color',
-    instruction: 'Name the color of the squares and press the corresponding key',
-    description: 'Colored squares'
-  },
-  {
-    name: 'Block 3: Interference',
+    name: 'Stroop Interference',
     shortName: 'Interference',
     type: 'interference',
     instruction: 'Name the INK COLOR (not the word) and press the corresponding key',
@@ -71,6 +57,7 @@ export default function Stroop({ onComplete }) {
 
   const blockStartTimeRef = useRef(0);
   const trialStartTimeRef = useRef(null);
+  const trialStartTimestamp = useRef(0); // Numeric timestamp for RT calculation
   const timerIntervalRef = useRef(null);
   const restIntervalRef = useRef(null);
 
@@ -128,7 +115,7 @@ export default function Stroop({ onComplete }) {
     resetBlockData();
     setScreen('practice');
 
-    const sequence = generateSequence(PRACTICE_TRIALS, BLOCKS[0].type);
+    const sequence = generateSequence(PRACTICE_TRIALS, 'interference');
     setStimulusSequence(sequence);
 
     setTimeout(() => {
@@ -195,6 +182,7 @@ export default function Stroop({ onComplete }) {
 
       setShowingFixation(false);
       trialStartTimeRef.current = new Date().toISOString()
+      trialStartTimestamp.current = Date.now(); // Store numeric timestamp for RT
       setCanRespond(true);
     }, 500);
   };
@@ -235,7 +223,7 @@ export default function Stroop({ onComplete }) {
     e.preventDefault();
     const trialEndTime = new Date().toISOString()
     const response = KEY_MAP[pressedKey];
-    const reactionTime = Date.now() - trialStartTimeRef.current;
+    const reactionTime = Date.now() - trialStartTimestamp.current;
     const isCorrect = response === currentStimulus.correctResponse;
 
     // Record trial data
@@ -273,7 +261,7 @@ export default function Stroop({ onComplete }) {
     }
 
     if (isPractice) {
-      setFeedback('Practice complete! Starting Block 1...');
+      setFeedback('Practice complete! Starting main test...');
       setFeedbackType('correct');
 
       setTimeout(() => {
@@ -297,11 +285,8 @@ export default function Stroop({ onComplete }) {
 
       setBlockResults(prev => [...prev, blockResult]);
 
-      if (currentBlock < BLOCKS.length - 1) {
-        showRestScreen(currentBlock + 1);
-      } else {
-        setScreen('results');
-      }
+      // Single block test - go straight to results
+      setScreen('results');
     }
   };
 
@@ -345,27 +330,13 @@ export default function Stroop({ onComplete }) {
 
           <div className="instructions">
             <h3>Instructions:</h3>
-            <p>This test consists of <strong>three blocks</strong>:</p>
+            <p>In this test, you will see color words printed in <strong>mismatched ink colors</strong>.</p>
 
             <div className="block-explanation">
-              <h4>Block 1: Word Reading</h4>
-              <p>You will see color words printed in <strong>black ink</strong>.</p>
-              <p><strong>Task:</strong> Read the word aloud as quickly as possible.</p>
-              <p className="example">Example: If you see <span style={{ color: 'black' }}>RED</span>, say "RED"</p>
-            </div>
-
-            <div className="block-explanation">
-              <h4>Block 2: Color Naming</h4>
-              <p>You will see <strong>colored squares</strong>.</p>
-              <p><strong>Task:</strong> Name the color of each square as quickly as possible.</p>
-              <p className="example">Example: If you see <span style={{ color: 'red' }}>■ ■ ■</span>, say "RED"</p>
-            </div>
-
-            <div className="block-explanation">
-              <h4>Block 3: Interference (Stroop Effect)</h4>
-              <p>You will see color words printed in <strong>mismatched ink colors</strong>.</p>
-              <p><strong>Task:</strong> Name the <strong>INK COLOR</strong>, not the word.</p>
-              <p className="example">Example: If you see <span style={{ color: 'blue' }}>RED</span>, say "BLUE"</p>
+              <h4>Stroop Interference Task</h4>
+              <p>You will see color words where the <strong>ink color differs from the word itself</strong>.</p>
+              <p><strong>Task:</strong> Name the <strong>INK COLOR</strong>, not the word, and press the corresponding key.</p>
+              <p className="example">Example: If you see <span style={{ color: 'blue' }}>RED</span>, press "B" for BLUE</p>
             </div>
 
             <p className="important-note">⚠️ <strong>Important:</strong> This test requires you to speak your responses aloud.
@@ -388,8 +359,8 @@ export default function Stroop({ onComplete }) {
 
       {screen === 'practice' && (
         <div id="practiceScreen">
-          <h1>Practice: <span>{BLOCKS[0].shortName}</span></h1>
-          <p className="instruction-text">{BLOCKS[0].instruction}</p>
+          <h1>Practice: <span>Stroop Interference</span></h1>
+          <p className="instruction-text">Name the INK COLOR (not the word) and press the corresponding key</p>
 
           <div className="stimulus-container">
             <div className={getStimulusClass()} style={{ color: currentStimulus?.color || '#2c3e50' }}>
@@ -441,8 +412,7 @@ export default function Stroop({ onComplete }) {
           </div>
 
           <div className="trial-info">
-            <p>Block: <span>{currentBlock + 1}</span> / 3</p>
-            <p>Trial: <span>{currentTrial}</span> / 12</p>
+            <p>Trial: <span>{currentTrial}</span> / {ITEMS_PER_BLOCK}</p>
           </div>
 
           <div className="timer-display">
@@ -451,14 +421,7 @@ export default function Stroop({ onComplete }) {
         </div>
       )}
 
-      {screen === 'rest' && (
-        <div id="restScreen">
-          <h1>Rest Period</h1>
-          <p className="rest-message">Great job! Take a short break.</p>
-          <p className="rest-timer">Next block starts in: <span>{restTimeLeft}</span> seconds</p>
-          <p className="rest-info">Upcoming: <span>{BLOCKS[currentBlock + 1]?.name}</span></p>
-        </div>
-      )}
+
 
       {screen === 'results' && (
         <div id="resultsScreen">
@@ -487,16 +450,7 @@ export default function Stroop({ onComplete }) {
             </tbody>
           </table>
 
-          {blockResults.length === 3 && (
-            <div className="stroop-effect">
-              <h3>Stroop Effect Analysis</h3>
-              <p><strong>Control Condition (Color Naming):</strong> {blockResults[1].completionTime}s</p>
-              <p><strong>Interference Condition (Stroop):</strong> {blockResults[2].completionTime}s</p>
-              <p><strong>Interference Effect:</strong> +{(parseFloat(blockResults[2].completionTime) - parseFloat(blockResults[1].completionTime)).toFixed(2)}s
-                ({((parseFloat(blockResults[2].completionTime) - parseFloat(blockResults[1].completionTime)) / parseFloat(blockResults[1].completionTime) * 100).toFixed(1)}% slower)</p>
-              <p>The Stroop effect demonstrates the automatic tendency to read words, which interferes with naming the ink color.</p>
-            </div>
-          )}
+
 
           <button id="goToAnotherTest" onClick={() => {
             if (onComplete) {

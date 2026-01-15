@@ -12,12 +12,17 @@ body {
 
 .container {
     border: none;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    padding: 40px;
-    max-width: 600px;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 40px 60px;
+    max-width: 100%;
     width: 100%;
+    min-height: 100vh;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 h1 {
@@ -76,7 +81,8 @@ button:disabled {
     background-color: #2196f3 !important;
 }
 
-#goNoGoScore, #timeLeft {
+#goNoGoScore,
+#timeLeft {
     font-weight: bold;
     color: #bfccd8;
     font-size: 24px;
@@ -130,7 +136,8 @@ button:disabled {
     border-collapse: collapse;
 }
 
-.results-table th, .results-table td {
+.results-table th,
+.results-table td {
     padding: 10px;
     border: 1px solid #ddd;
     text-align: center;
